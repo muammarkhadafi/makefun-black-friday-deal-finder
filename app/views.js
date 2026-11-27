@@ -47,11 +47,11 @@ export function filterBar(deals, f) {
   const cats = allCategories(deals);
   const stores = allStores(deals);
   return `<form class="filters" id="filters">
-  <label>Search <input type="search" name="q" value="${escape(f.q || '')}" placeholder="Product, store, category"></label>
-  <label>Category <select name="cat">${option('All', 'All categories', f.cat || 'All')}${cats.map((c) => option(c, c, f.cat || 'All')).join('')}</select></label>
-  <label>Store <select name="store">${option('All', 'All stores', f.store || 'All')}${stores.map((s) => option(s, s, f.store || 'All')).join('')}</select></label>
-  <label>Discount <select name="min">${option('', 'Any discount', f.min || '')}${option('25', '25% off or more', f.min || '')}${option('40', '40% off or more', f.min || '')}${option('50', '50% off or more', f.min || '')}</select></label>
-  <label>Sort <select name="sort">${option('best', 'Best deals first', f.sort || 'best')}${option('discount', 'Biggest % off', f.sort || 'best')}${option('savings', 'Biggest $ saved', f.sort || 'best')}${option('price', 'Lowest price', f.sort || 'best')}</select></label>
+  <label>Search <input type="search" name="q" value="${escape(f.q || '')}" placeholder="Product, store, category" aria-label="Search deals by product, store or category"></label>
+  <label>Category <select name="cat" aria-label="Filter by category">${option('All', 'All categories', f.cat || 'All')}${cats.map((c) => option(c, c, f.cat || 'All')).join('')}</select></label>
+  <label>Store <select name="store" aria-label="Filter by store">${option('All', 'All stores', f.store || 'All')}${stores.map((s) => option(s, s, f.store || 'All')).join('')}</select></label>
+  <label>Discount <select name="min" aria-label="Filter by minimum discount">${option('', 'Any discount', f.min || '')}${option('25', '25% off or more', f.min || '')}${option('40', '40% off or more', f.min || '')}${option('50', '50% off or more', f.min || '')}</select></label>
+  <label>Sort <select name="sort" aria-label="Sort deals">${option('best', 'Best deals first', f.sort || 'best')}${option('discount', 'Biggest % off', f.sort || 'best')}${option('savings', 'Biggest $ saved', f.sort || 'best')}${option('price', 'Lowest price', f.sort || 'best')}</select></label>
 </form>`;
 }
 
@@ -63,7 +63,7 @@ function card(d) {
   <p class="card-save">You save ${usd(saved(d))}</p>
   <p><span class="verdict v-${d.verdict}">${VERDICT_LABEL[d.verdict]}</span></p>
   <p class="card-checked">Checked ${day(d.checked)}</p>
-  <p><a class="store-link" href="${escape(d.url)}" rel="noopener">Find it at ${escape(d.store)} ↗</a></p>
+  <p><a class="store-link" href="${escape(d.url)}" rel="noopener noreferrer">Find it at ${escape(d.store)} ↗</a></p>
 </li>`;
 }
 
@@ -95,7 +95,7 @@ export function deal(d) {
   <dt>Checked</dt><dd>${day(d.checked)}</dd>
   <dt>Read in</dt><dd>${escape(d.source)}</dd>
 </dl>
-<p><a class="store-link big" href="${escape(d.url)}" rel="noopener">Find it at ${escape(d.store)} ↗</a></p>
+<p><a class="store-link big" href="${escape(d.url)}" rel="noopener noreferrer">Find it at ${escape(d.store)} ↗</a></p>
 <p class="note">Prices move fast on Black Friday. This price was read at the time above; check the store page before you buy.</p>`;
 }
 
